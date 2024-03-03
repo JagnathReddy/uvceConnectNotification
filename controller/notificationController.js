@@ -20,13 +20,16 @@ exports.sendNotification = (req, res) => {
 
     getMessaging().send(message)
         .then((response) => {
-            // Response is a message ID string.
-            console.log('Successfully sent message:', response);
-            res.send(response);
+            res.send({
+                status:200,
+                message:response.toString()
+            });
         })
         .catch((error) => {
-            console.log('Error sending message:', error);
-            res.send(error);
+            res.send({
+                status:500,
+                message:error.toString()
+            });
         });
 }
 //req=>
